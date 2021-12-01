@@ -1,0 +1,10 @@
+__pycache__
+*.py
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# datasets
+*.csv
+
+.DS_Store
