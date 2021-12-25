@@ -44,13 +44,15 @@ def prefilter_items(data, take_n_popular=5000, item_features=None):
 
 def make_unique_recommendations(recommendations, N=100):
     
+    # получаем уникальные рекомендации
+    
     unique_recommendations = []
     [unique_recommendations.append(item) for item in recommendations if item not in unique_recommendations]
     
     n_rec = len(unique_recommendations)
     if n_rec < N:
         final_recommendations = unique_recommendations.extend(unique_recommendations[:N - n_rec])
-        #вствить топ рекомендаций
+
     else:
         final_recommendations = unique_recommendations[:N]
     
@@ -88,13 +90,6 @@ def postfilter_items(recommendations, item_features, N=100):
     else:
         final_recommendations = final_recommendations[:N]
         
-
-#     n_rec = len(unique_recommendations)
-#     if n_rec < N:
-#         final_recommendations = unique_recommendations.extend(unique_recommendations[:N - n_rec])
-#         #вствить топ рекомендаций
-#     else:
-#         final_recommendations = unique_recommendations[:N]
     
     assert len(final_recommendations) == N, 'Количество рекомендаций != {}'.format(N)
     return final_recommendations

@@ -10,8 +10,6 @@ from implicit.bpr import BayesianPersonalizedRanking
 from implicit.nearest_neighbours import ItemItemRecommender  # нужен для одного трюка
 from implicit.nearest_neighbours import bm25_weight, tfidf_weight, BM25Recommender, CosineRecommender, TFIDFRecommender
 
-from .utils import postfilter_items
-
 
 class MainRecommender:
     """Рекоммендации, которые можно получить из ALS
@@ -43,7 +41,7 @@ class MainRecommender:
         self.items = self.data.item_id.unique()
 
         if weighting:
-            self.user_item_matrix = bm25_weight(self.user_item_matrix.T, B=0.07, K1= 5).T
+            self.user_item_matrix = bm25_weight(self.user_item_matrix.T, B=0.07, K1= 5).T # подобраны параметры взвешивания
 
          # модели
         self.als_model = self.fit_als(self.user_item_matrix)
